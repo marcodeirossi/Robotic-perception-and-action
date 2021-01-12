@@ -1,0 +1,199 @@
+QT += core
+QT += network
+QT += gui
+
+CONFIG += c++11 console
+CONFIG -= app_bundle
+
+# The following define makes your compiler emit warnings if you use
+# any Qt feature that has been marked deprecated (the exact warnings
+# depend on your compiler). Please consult the documentation of the
+# deprecated API in order to know how to port your code away from it.
+DEFINES += QT_DEPRECATED_WARNINGS
+
+# You can also make your code fail to compile if it uses deprecated APIs.
+# In order to do so, uncomment the following line.
+# You can also select to disable deprecated APIs only up to a certain version of Qt.
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+SOURCES += \
+        main.cpp
+
+
+# ------------------------------------------------------------------------OPENCV UNIX
+unix{
+INCLUDEPATH += \
+    /usr/include/opencv
+    #/usr/include/opencv2
+LIBS += `pkg-config  --libs opencv`
+}
+
+# ------------------------------------------------------------------------REALSENSE UNIX
+unix{
+    REALSENSE2_LIBS_PATH = "/usr/local/lib"
+    REALSENSE2_INCLUDE_PATH = "/usr/local/include"
+
+    INCLUDEPATH += $${REALSENSE2_INCLUDE_PATH}
+
+    LIBS += -L$${REALSENSE2_LIBS_PATH} -lrealsense2
+}
+
+INCLUDEPATH += \
+    /home/user/librealsenseNew/librealsense/wrappers/opencv
+
+# ---------------------------------------------------------------------------PCL UNIX
+unix{
+
+PCL_LIBS_PATH = "/usr/lib/x86_64-linux-gnu"
+PCL_INCLUDE_PATH = "/usr/include/pcl-1.7"
+VTK_LIBS_PATH ="/usr/lib/x86_64-linux-gnu"
+VTK_INCLUDE_PATH = "/usr/include/vtk-6.2"
+
+
+
+INCLUDEPATH +=  \
+    $${PCL_INCLUDE_PATH} \
+    $${VTK_INCLUDE_PATH} \
+    /usr/include/eigen3
+
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_common
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_features
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_filters
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_io
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_io_ply
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_kdtree
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_keypoints
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_octree
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_registration
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_sample_consensus
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_search
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_segmentation
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_surface
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_tracking
+LIBS += -L$${PCL_LIBS_PATH} -lpcl_visualization
+LIBS += -lflann_cpp
+LIBS += -lboost_system
+
+#LIBS += -L$${VTK_LIBS_PATH} -lQVTK \
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkalglib-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkChartsCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonColor-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonComputationalGeometry-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonDataModel-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonExecutionModel-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonMath-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonMisc-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonSystem-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkCommonTransforms-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkDICOMParser-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkDomainsChemistry-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkexoIIc-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkexpat-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersAMR-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersExtraction-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersFlowPaths-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersGeneral-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersGeneric-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersGeometry-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersHybrid-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersHyperTree-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersImaging-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersModeling-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersParallel-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersParallelImaging-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersProgrammable-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersSelection-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersSMP-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersSources-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersStatistics-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersTexture-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkFiltersVerdict-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkfreetype-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkftgl-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkGeovisCore-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkgl2ps-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkGUISupportQt-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkGUISupportQtOpenGL-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkGUISupportQtSQL-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkGUISupportQtWebkit-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkhdf5-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkhdf5_hl-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingColor-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingFourier-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingGeneral-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingHybrid-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingMath-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingMorphological-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingSources-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingStatistics-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkImagingStencil-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkInfovisCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkInfovisLayout-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkInteractionImage-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkInteractionStyle-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkInteractionWidgets-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOAMR-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOEnSight-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOExodus-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOExport-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOGeometry-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOImage-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOImport-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOInfovis-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOLegacy-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOLSDyna-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOMINC-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOMovie-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIONetCDF-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOParallel-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOParallelXML-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOPLY-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOSQL-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOVideo-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOXML-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkIOXMLParser-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkjpeg-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkjsoncpp-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtklibxml2-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkLocalExample-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkmetaio-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkNetCDF-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkNetCDF_cxx-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkoggtheora-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkParallelCore-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkpng-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkproj4-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingAnnotation-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingContext2D-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingContextOpenGL-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingFreeType-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingGL2PS-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingImage-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingLabel-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingLIC-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingLOD-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingOpenGL-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingQt-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingVolume-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkRenderingVolumeOpenGL-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtksqlite-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtksys-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtktiff-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkverdict-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkViewsContext2D-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkViewsCore-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkViewsInfovis-6.2
+LIBS += -L$${VTK_LIBS_PATH}  -lvtkViewsQt-6.2
+#LIBS += -L$${VTK_LIBS_PATH}  -lvtkzlib-6.2
+}
+
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
